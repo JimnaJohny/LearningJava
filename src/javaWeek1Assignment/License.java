@@ -17,13 +17,16 @@ public class License {
 			} else if (currentLevel == "G") {
 				System.out.println("You already have full license!!!");
 			} 
-			//else if (currentLevel == "null") {
-				System.out.println("Licence to take: G1");
-			} else {
+			else if (currentLevel == "null") {
+			System.out.println("Licence to take: G1");
+			}
+			 else {
 				System.out.println("Invalid Entry");
 			}
-		} else {
+		}
+		 else {
 			System.out.println("Not eligible to take license, Minimum age required to take license is 16");
 		}
 	}
 }
+

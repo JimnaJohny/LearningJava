@@ -8,6 +8,6 @@ public class CalculateFuelInjection {
 			yFuel = xThrottle * 2;
 		else
 			yFuel = xThrottle + 127;
-		System.out.println("yFuel valve is: " + yFuel);
+		System.out.println("yFuel value is: " + yFuel);
 	}
 }
