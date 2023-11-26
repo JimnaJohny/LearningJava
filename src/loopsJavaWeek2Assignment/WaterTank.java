@@ -3,7 +3,7 @@
 package loopsJavaWeek2Assignment;
 
 public class WaterTank {
-	int initialVolume = 45;
+	int initialVolume = 72;
 	int tankCapacity = 100;
 	int bucketCapacity = 10;
 	int breakPoint = 90;
@@ -12,8 +12,11 @@ public class WaterTank {
 		while (initialVolume < breakPoint) {
 			initialVolume = initialVolume + bucketCapacity;
 			if (initialVolume <= breakPoint)
-				System.out.println("Watertank contains " + initialVolume + " litres of water");
+			{
+				System.out.println("Adding 1 bucket of water");
+				System.out.println("Watertank contains " + initialVolume + " litres of water now");
+			}
 		}
-		System.out.println("Tank is reached to its maximum capacity");
+		System.out.println("Tank is reached to its maximum capacity, Adding more water will result in overflow");
 	}
 }
