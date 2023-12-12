@@ -1,3 +1,15 @@
+//Part 1 : Write a program which when given a phone brand name, shows all the available products present in that category. Please use the below table to create list of products for each category.
+//Part 2:  After displaying all the available products, ask user to enter one product name.  
+//Ensure user enters one of the displayed names.
+// If user enters a name which is present in list, print  “product selected is : name of product “ 
+// otherwise display an error message – “Please select a product from the list”
+//
+//Samsung	Google	Apple
+//S20	Google Pixel 6	Iphone12
+//S21	Google Pixel 6 Pro 	Iphone SE
+//Flip3	Google Pixel Pro	Iphone 15
+//Fold3	Google  Pixel 5	Iphone 13
+
 package arraysJavaWeek3Assignment;
 
 import java.util.Scanner;
@@ -13,6 +25,7 @@ public class PhoneBrand {
 	Scanner sc = new Scanner(System.in);
 
 	void productList() {
+		while(flag==0) {
 		System.out.println("Enter the brand of phone you are looking for from the following list: \nSamsung\nGoogle\nApple");
 		brandName = sc.nextLine();
 		if (brandName.equalsIgnoreCase("Samsung")) {
@@ -28,7 +41,7 @@ public class PhoneBrand {
 					flag = 1;
 				}
 			if (flag == 0)
-				System.out.println("Please select a product from the list");
+				System.out.println("Invalid Product name");
 		} else if (brandName.equalsIgnoreCase("Google")) {
 			System.out.println("Available products of " + brandName + " brand are: ");
 			for (i = 0; i < google.length; i++) {
@@ -42,7 +55,7 @@ public class PhoneBrand {
 					flag = 1;
 				}
 			if (flag == 0)
-				System.out.println("Please select a product from the list");
+				System.out.println("Invalid Product name");
 		} 
 		else if (brandName.equalsIgnoreCase("Apple")) {
 			System.out.println("Available products of " + brandName + " brand are: ");
@@ -57,9 +70,10 @@ public class PhoneBrand {
 					flag = 1;
 				}
 			if (flag == 0)
-				System.out.println("Please select a product from the list");
+				System.out.println("Inavlid Product name");
 		} else {
-			System.out.println("Please enter a brand name from the above list");
+			System.out.println("Invalid brand name");
+		}
 		}
 
 	}
