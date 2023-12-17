@@ -5,11 +5,14 @@ import java.util.Scanner;
 public class MainPizzaClass {
 
 	public static void main(String[] args) {
+		Boolean isCorrectSizeSelected=false;
+		while(!isCorrectSizeSelected)
+		{ 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Choose your Pizza size:\nSmall\nMedium\nLarge");
 		String size = sc.nextLine();
 		PizzaClass pizzaShop= new PizzaClass();
-		Boolean isCorrectSizeSelected= pizzaShop.typeOfPizza(size);
+		isCorrectSizeSelected= pizzaShop.typeOfPizza(size);
 		if(isCorrectSizeSelected)
 		{
 		System.out.println("Do you need extra pepperoni topping? True/False");
@@ -23,6 +26,7 @@ public class MainPizzaClass {
 		}
 		
 
+	}
 	}
 
 }
