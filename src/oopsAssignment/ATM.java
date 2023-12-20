@@ -7,9 +7,14 @@ public class ATM extends BankOperations {
 	boolean isCorrectPinEntered = false;
 	int count = 0;
 
-	public ATM(int pin, double balance) {
-		super(balance);
-		this.pin = pin;
+//	public ATM(int pin, double balance) {
+//		super(balance);
+//		this.pin = pin;
+//	}
+
+	public ATM(PersonAccountDetails person) {
+		super(person.getBalance());
+		this.pin = person.getPin();
 	}
 
 	public boolean validatePIN() {

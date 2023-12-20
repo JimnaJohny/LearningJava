@@ -7,6 +7,15 @@ public class PersonAccountDetails {
 	private int pin;
 	private String onlineBankingPassword;
 
+	public PersonAccountDetails(String bankAccountNo, String accountHoldersName, double balance, int pin,
+			String onlineBankingPassword) {
+		this.bankAccountNo = bankAccountNo;
+		this.accountHoldersName = accountHoldersName;
+		this.balance = balance;
+		this.pin = pin;
+		this.onlineBankingPassword = onlineBankingPassword;
+	}
+
 	public String getBankAccountNo() {
 		return bankAccountNo;
 	}

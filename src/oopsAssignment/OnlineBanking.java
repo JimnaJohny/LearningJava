@@ -8,10 +8,16 @@ public class OnlineBanking extends BankOperations {
 	boolean isValidPasswordEntered = false;
 	int count = 0;
 
-	public OnlineBanking(String userName, String password, double balance) {
-		super(balance);
-		this.userName = userName;
-		this.password = password;
+//	public OnlineBanking(String userName, String password, double balance) {
+//		super(balance);
+//		this.userName = userName;
+//		this.password = password;
+//	}
+
+	public OnlineBanking(PersonAccountDetails person) {
+		super(person.getBalance());
+		this.userName = person.getBankAccountNo();
+		this.password = person.getOnlineBankingPassword();
 	}
 
 	public boolean validatePassword() {

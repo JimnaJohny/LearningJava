@@ -9,11 +9,10 @@ public class BankOperations {
 	public BankOperations(double balance) {
 		availableFund = balance;
 	}
-
 	public double withdraw() {
 		System.out.println("Enter the amount to withdraw:");
 		double withdrawAmount = sc.nextDouble();
-		if (withdrawAmount > 0)
+		if (withdrawAmount<=availableFund&&withdrawAmount>0)
 			System.out.println("Withdrawal successfully completed, Take the cash");
 		else
 			System.out.println("Please enter a valid amount");

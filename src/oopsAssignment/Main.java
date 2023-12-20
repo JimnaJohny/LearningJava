@@ -5,22 +5,14 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		int typeOfService;
-		boolean isValidCredentialEntered = false;
 		boolean isValidAccountNumberSelected = false;
-		boolean isCorrectBankingServiceSelected = false;
-		boolean isValidTransactionSelected = false;
+		boolean isAnotherTransactionRequested=true;
 		double balance = 0;
 		Scanner sc = new Scanner(System.in);
-
-		PersonAccountDetails person = new PersonAccountDetails();
-		person.setBankAccountNo("123456789");
-		person.setAccountHoldersName("Jimna");
-		person.setBalance(5000);
-		person.setPin(1234);
-		person.setOnlineBankingPassword("Password");
-		ATM atm = new ATM(person.getPin(), person.getBalance());
-		OnlineBanking online = new OnlineBanking(person.getBankAccountNo(), person.getOnlineBankingPassword(),
-				person.getBalance());
+		PersonAccountDetails person = new PersonAccountDetails("123456789", "Jimna", 5000, 1234, "Password");
+		ATM atm = new ATM(person);
+		OnlineBanking online = new OnlineBanking(person);
+		// person = new PersonAccountDetails();
 		while (!isValidAccountNumberSelected) {
 			System.out.println("Enter bank account number:");
 			String accountNum = sc.next();
@@ -29,7 +21,12 @@ public class Main {
 				isValidAccountNumberSelected = true;
 			} else
 				System.out.println("Invalid account number");
-			if (isValidAccountNumberSelected == true)
+			//if (isValidAccountNumberSelected == true)
+				
+			while (isValidAccountNumberSelected && isAnotherTransactionRequested) {
+				boolean isCorrectBankingServiceSelected = false;
+	            boolean isValidCredentialEntered = false;
+	            boolean isValidTransactionSelected = false;
 				while (!isCorrectBankingServiceSelected) {
 					System.out.println(
 							"Choose one of the following types of banking service you want: \n1.ATM \n2.Online Banking");
@@ -58,14 +55,17 @@ public class Main {
 					case 1:
 						isValidTransactionSelected = true;
 						balance = operations.withdraw();
+						person.setBalance(balance);
 						break;
 					case 2:
 						isValidTransactionSelected = true;
 						balance = operations.deposit();
+						person.setBalance(balance);
 						break;
 					case 3:
 						isValidTransactionSelected = true;
 						balance = operations.viewBalance();
+						person.setBalance(balance);
 						break;
 					default:
 						System.out.println("Invalid Entry!");
@@ -75,6 +75,11 @@ public class Main {
 					if (isValidTransactionSelected)
 						System.out.println("Available balance is:" + balance);
 				}
+					System.out.println("Do you need another transaction? TRUE/FALSE");
+					isAnotherTransactionRequested=sc.nextBoolean();
+				
+				}
 		}
+		System.out.println("Thank you for using Scotia bank application");
 	}
 }
