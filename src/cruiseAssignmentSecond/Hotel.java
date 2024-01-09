@@ -44,7 +44,7 @@ public class Hotel extends MyBookings {
 		} while (!continueSelection.equalsIgnoreCase("Y"));
 	}
 
-	public void calculateBasicCharge() {
+	public int calculateBasicCharge() {
 		boolean isAdultNo = true;
 		do {
 			System.out.println("Enter the number of Adults:");
@@ -61,21 +61,22 @@ public class Hotel extends MyBookings {
 			System.out.println("Enter the number of nights you want to stay at the Hotel");
 			noOfNights = sc.nextInt();
 			if (hotelType.equalsIgnoreCase("deluxe suite") && deluxe != null) {
-				deluxe.calculateBasicCharge(noOfAdults, noOfChildren, noOfNights);
+				basicCharge+=deluxe.calculateBasicCharge(noOfAdults, noOfChildren, noOfNights);
 			} else if (hotelType.equalsIgnoreCase("family suite") && family != null) {
-				family.calculateBasicCharge(noOfAdults, noOfChildren, noOfNights);
+				basicCharge+=family.calculateBasicCharge(noOfAdults, noOfChildren, noOfNights);
 			}
 		}
+		return noOfNights;
 	}
 
-	public void calculateMealsCharge(Scanner sc) {
+	public double calculateMealsCharge(Scanner sc) {
 		System.out.println("Do you want to pre-book for meals at $25 for adults and $5 for kids? True/False");
 		isMealsSelected = sc.nextBoolean();
 		if (isMealsSelected) {
 
 			basicCharge = basicCharge + (noOfAdults * 25 + noOfChildren * 5) * noOfNights;
 		}
-		// return basicCharge;
+		return basicCharge;
 	}
 
 	@Override

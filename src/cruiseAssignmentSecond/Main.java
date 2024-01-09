@@ -7,7 +7,7 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		User user = new User();
-		System.out.println("Welcome to Cruise Booking.\nPlease sign up to book a cruise.");
+		System.out.println("Welcome to Carnival Vacation Packages .\nPlease sign up to book a service.");
 		System.out.println("Enter your email address");
 		String emailId = sc.nextLine();
 		user.setEmailId(emailId);
@@ -24,6 +24,7 @@ public class Main {
 		Boolean iscorrectUsername = true;
 		String usernameEntered;
 		String passwordEntered;
+		Boolean isAnotherService=true;
 		do {
 			System.out.println("Please login with your username and password.\nEnter your username/email id");
 			usernameEntered = sc.nextLine();
@@ -40,6 +41,8 @@ public class Main {
 				&& passwordEntered.equalsIgnoreCase(user.getPassword())) {
 			boolean isCorrectService = true;
 			String service;
+			do { 
+				isAnotherService=true;
 			do {
 				isCorrectService = true;
 				System.out.println("Please enter the service you want to book. Hotel Stay/ Cruise");
@@ -50,7 +53,7 @@ public class Main {
 				}
 			} while (!isCorrectService);
 			if (service.equalsIgnoreCase("Cruise")) {
-				Cruise cruise = new Cruise(null, 0, 0, 0);
+				Cruise cruise = null;
 				Boolean isCorrectCruiseType = true;
 				String continueSelection = null;
 				String cruiseType;
@@ -92,6 +95,7 @@ public class Main {
 				do {
 					System.out.println("Enter the number of Adults:");
 					noOfAdults = sc.nextInt();
+					sc.nextLine();// to fix the issue with Scanner class handles input
 					isAdultNo = true;
 					if (noOfAdults <= 0) {
 						System.out.println("Number of adults should be atleast 1");
@@ -101,10 +105,12 @@ public class Main {
 				if (noOfAdults > 0) {
 					System.out.println("Enter the number of children below 5 years:");
 					int noOfChildrenBelow5 = sc.nextInt();
+					sc.nextLine();
 					if (noOfChildrenBelow5 > 0)
 						System.out.println(noOfChildrenBelow5 + " children can enjoy the service for free");
 					System.out.println("Enter the number of children 5 years or above:");
 					int noOfChildren = sc.nextInt();
+					sc.nextLine();
 					cruise.setPassengerNumbers(noOfAdults, noOfChildren);
 					cruise.calculateBasicCharge();
 					cruise.calculateMealsCharge(sc);
@@ -116,12 +122,14 @@ public class Main {
 			} else if (service.equalsIgnoreCase("Hotel Stay")) {
 				Hotel hotel = new Hotel();
 				hotel.display();
-				hotel.calculateBasicCharge();
-				hotel.calculateMealsCharge(sc);
+				int noOfNights=hotel.calculateBasicCharge();
+				double basicCharge=hotel.calculateMealsCharge(sc);
 				double totalCharge = hotel.addTax();
-				System.out.println("Total charge is " + String.format("%.2f", totalCharge));
+				System.out.println("The total amount you will be charged is:");
+				System.out.println(service+" @"+noOfNights+" nights: $"+basicCharge);
+				System.out.println("Total charge including HST is $" + String.format("%.2f", totalCharge));
+				
 			}
-		}
 		Boolean isCorrectitemSelected = true;
 		System.out.println(
 				"Do you want to change your personal information?\nPress Y to change, Press any other alphabet to exit");
@@ -146,6 +154,7 @@ public class Main {
 					System.out.println(
 							"Please enter the information you want to change:\n1. Password\n2. Phone number\n3. Email id");
 					int infoToChange = sc.nextInt();
+					sc.nextLine();
 					switch (infoToChange) {
 					case 1:
 						System.out.println("Enter your new password");
@@ -173,6 +182,15 @@ public class Main {
 					}
 				} while (!isCorrectitemSelected);
 		}
+		System.out.println("Do you want to book another Hotel room or Cruise? Y/N");
+		String anotherService=sc.next();
+		sc.nextLine();
+		if(anotherService.equalsIgnoreCase("Y"))
+			isAnotherService=false;
+		else
+			isAnotherService=true;
+		}while(!isAnotherService);
 		System.out.println("Thank You for using the service!");
 	}
+}
 }

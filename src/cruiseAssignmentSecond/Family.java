@@ -1,13 +1,14 @@
 package cruiseAssignmentSecond;
 
 public class Family extends Hotel {
-//	public Family() {
-//		super();
-//	}
-	public void calculateBasicCharge(int noOfAdults, int noOfChildren, int noOfNights) {
-		if (noOfAdults <= 4 && noOfChildren <= 4)
-			basicCharge += noOfNights * 230;
-		else
-			System.out.println("Family Suite cannot accommodate more than 4 adults and 4 children.");
+	public Family() {
+		super();
+		System.out.println("You have selected Family Suite which can accommodates maximum of 4 adults and 4 children at $230/night");
+	}
+	public double calculateBasicCharge(int noOfAdults, int noOfChildren, int noOfNights) {
+		int suitesNeeded = Math.max((noOfAdults + 3) / 4, (noOfChildren + 3) / 4);
+		System.out.println("You need "+suitesNeeded+" Family Suites to accommodate "+noOfAdults+ " adults and "+noOfChildren+" children");
+			basicCharge += suitesNeeded* noOfNights * 230;
+		return basicCharge;
 	}
 }

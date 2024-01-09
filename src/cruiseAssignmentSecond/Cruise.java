@@ -2,7 +2,7 @@ package cruiseAssignmentSecond;
 
 import java.util.Scanner;
 
-public class Cruise extends MyBookings {
+public abstract class Cruise extends MyBookings {
 	protected String cruiseName;
 	protected double priceForAdult;
 	protected double priceForChildren;
@@ -44,10 +44,7 @@ public class Cruise extends MyBookings {
 		}
 		// return basicCharge;
 	}
-	public void additionalService(int noOfAdults, Scanner sc)
-	{	
-	}
-	
+	public abstract void additionalService(int noOfAdults, Scanner sc);
 	@Override
 	public double addTax() {
 		basicCharge = basicCharge + (basicCharge * 0.15);
